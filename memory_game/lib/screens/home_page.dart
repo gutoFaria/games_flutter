@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:memory_game/screens/easy_game.dart';
+
+import 'game_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,92 +20,54 @@ class _HomePageState extends State<HomePage> {
                 image: AssetImage("assets/images/greenPortraitBg.png"),
                 fit: BoxFit.cover)),
       ),
-      Center(
-        child: Container(
-          width: 300,
-          height: 600,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/panelCloud.png"),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'MEMORY',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Color.fromARGB(255, 96, 204, 231),
+                fontSize: 50,
+                fontWeight: FontWeight.bold),
+          ),
+          const Text(
+            'GAME',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Color.fromARGB(255, 96, 204, 231),
+                fontSize: 50,
+                fontWeight: FontWeight.bold),
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GamePage()),
+                  (Route<dynamic> route) => false,
+                );
+              },
+              child: Container(
+                width: 150,
+                height: 45,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/btn_easy.png"),
+                        fit: BoxFit.cover)),
+                child: const Center(
+                  child: Text(
+                    'START',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
             ),
           ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 100,),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const EasyGame()),
-                          (Route<dynamic> route) => false,
-                        );
-                  },
-                  child: Container(
-                    width: 150,
-                    height: 45,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                                AssetImage("assets/images/btn_easy.png"),
-                            fit: BoxFit.cover)
-                            ),
-                    child:const Center(
-                      child: Text('Fácil',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold
-                      ),),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20,),
-                GestureDetector(
-                  child: Container(
-                    width: 150,
-                    height: 45,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                                AssetImage("assets/images/btn_medium.png"),
-                            fit: BoxFit.cover)),
-                          child:const Center(
-                      child: Text('Médio',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold
-                      ),),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20,),
-                GestureDetector(
-                  child: Container(
-                    width: 150,
-                    height: 45,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                                AssetImage("assets/images/btn_hard.png"),
-                            fit: BoxFit.cover)),
-                    child:const Center(
-                      child: Text('Difícil',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold
-                      ),),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+        ],
       ),
     ]));
   }
