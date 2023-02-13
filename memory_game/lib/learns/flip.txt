@@ -1,0 +1,83 @@
+import 'package:flip_card/flip_card.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const HomeScreen(),
+    );
+  }
+
+  FlipCard fc = FlipCard(
+      front: Container(
+        width: 300,
+        height: 400,
+        color: Colors.red,
+      ),
+      back: Container(
+        width: 300,
+        height: 400,
+        color: Colors.blue,
+      ));
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool vira = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Teste Flip'),
+      ),
+      body: Center(
+        child: GestureDetector(
+          onTap: () {
+            setState(() {
+              vira = !vira;
+              print(vira);
+            });
+            print(vira);
+          },
+          child: FlipCard(
+            onFlip: () {
+               setState(() {
+              vira = !vira;
+            });
+            print(vira);
+            },
+              direction: FlipDirection.HORIZONTAL,
+              front: Container(
+                width: 300,
+                height: 400,
+                color: Colors.red,
+              ),
+              back: Container(
+                width: 300,
+                height: 400,
+                color: Colors.blue,
+              )),
+        ),
+      ),
+    );
+  }
+}

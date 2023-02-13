@@ -1,0 +1,8 @@
+onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GameScreen()),
+                          (Route<dynamic> route) => false,
+                        );
+                      }
